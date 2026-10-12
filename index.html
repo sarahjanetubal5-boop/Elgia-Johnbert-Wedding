@@ -405,7 +405,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
 <footer>November 27 &middot; 2026 &middot; Zamboanga Sibugay</footer>
 
 <div class="spot-hidden" aria-hidden="true"><div id="spotEmbed"></div></div>
-<button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false" title="Tahanan (instrumental)">
+<button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false" title="Palagi (instrumental)">
   <svg class="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
   <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
 </button>
@@ -425,7 +425,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
   var ctrl=null, want=false, playing=false, mb=document.getElementById('musicBtn');
   function show(p){ playing=p; mb.classList.toggle('on',p); mb.setAttribute('aria-pressed',p?'true':'false'); mb.setAttribute('aria-label',p?'Pause music':'Play music'); }
   window.onSpotifyIframeApiReady=function(API){
-    API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:5jyJz0RGTIP1obgZ4Ysqx9',width:300,height:80},function(c){
+    API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:6Q5wfRhEi45sdinPr4rFoC',width:300,height:80},function(c){
       ctrl=c;
       c.addListener('playback_update',function(e){ if(e&&e.data) show(!e.data.isPaused); });
       if(want){ try{c.play()}catch(err){} }
