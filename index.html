@@ -422,17 +422,17 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
 </style>
 <script>
 (function(){
-  var ctrl=null, want=false, playing=false, mb=document.getElementById('musicBtn');
+  var LIMIT=60000, lastPos=0, ctrl=null, want=false, playing=false, mb=document.getElementById('musicBtn');
   function show(p){ playing=p; mb.classList.toggle('on',p); mb.setAttribute('aria-pressed',p?'true':'false'); mb.setAttribute('aria-label',p?'Pause music':'Play music'); }
   window.onSpotifyIframeApiReady=function(API){
     API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:2nIyuLVYzmMS4XhlhEPfjo',width:300,height:80},function(c){
       ctrl=c;
-      c.addListener('playback_update',function(e){ if(e&&e.data) show(!e.data.isPaused); });
+      c.addListener('playback_update',function(e){ if(!e||!e.data) return; lastPos=e.data.position||0; var on=!e.data.isPaused; if(on&&lastPos>=LIMIT){ try{c.pause()}catch(x){} on=false; } show(on); });
       if(want){ try{c.play()}catch(err){} }
     });
   };
   document.getElementById('openBtn').addEventListener('click',function(){ want=true; if(ctrl){ try{ctrl.play()}catch(e){} } });
-  mb.addEventListener('click',function(){ if(!ctrl){ want=!want; return; } try{ ctrl.togglePlay(); }catch(e){} });
+  mb.addEventListener('click',function(){ if(!ctrl){ want=!want; return; } try{ if(!playing&&lastPos>=LIMIT-1000){ lastPos=0; ctrl.seek(0); ctrl.resume(); } else { ctrl.togglePlay(); } }catch(e){} });
 })();
 </script>
 <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
