@@ -404,25 +404,35 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
 </main>
 <footer>November 27 &middot; 2026 &middot; Zamboanga Sibugay</footer>
 
-<div class="spot" id="spot" hidden>
-  <button type="button" class="spot-x" id="spotHide" aria-label="Hide music player">&times;</button>
-  <div id="spotEmbed"></div>
-</div>
-<button class="music" id="musicBtn" type="button" aria-label="Show music player" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></button>
+<div class="spot-hidden" aria-hidden="true"><div id="spotEmbed"></div></div>
+<button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false" title="Tahanan (instrumental)">
+  <svg class="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+  <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
+</button>
 <style>
-.spot{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:30;width:min(420px,calc(100% - 32px));border-radius:14px;box-shadow:0 14px 30px -14px rgba(79,59,48,.55);background:var(--paper)}
-.spot iframe{display:block;border-radius:12px}
-.spot-x{position:absolute;top:-12px;right:-8px;width:28px;height:28px;border-radius:50%;border:1px solid var(--nude);background:var(--paper);color:var(--taupe);font-size:18px;line-height:1;cursor:pointer;z-index:1}
+.spot-hidden{position:fixed;left:-10000px;top:0;width:300px;height:80px;overflow:hidden;opacity:0;pointer-events:none}
+.music .bars{display:none;align-items:flex-end;gap:3px;height:18px}
+.music .bars i{width:3px;background:var(--taupe);border-radius:2px;animation:eq 1s ease-in-out infinite}
+.music .bars i:nth-child(1){height:40%;animation-delay:-.2s}.music .bars i:nth-child(2){height:100%;animation-delay:-.5s}.music .bars i:nth-child(3){height:65%}
+.music.on .bars{display:flex}.music.on .ic-play{display:none}
+.music.on svg{animation:none}
+@keyframes eq{0%,100%{transform:scaleY(.4)}50%{transform:scaleY(1)}}
+.music .bars i{transform-origin:bottom}
+@media (prefers-reduced-motion:reduce){.music .bars i{animation:none}}
 </style>
 <script>
 (function(){
-  var ctrl=null, wantPlay=false, spot=document.getElementById('spot'), mb=document.getElementById('musicBtn');
+  var ctrl=null, want=false, playing=false, mb=document.getElementById('musicBtn');
+  function show(p){ playing=p; mb.classList.toggle('on',p); mb.setAttribute('aria-pressed',p?'true':'false'); mb.setAttribute('aria-label',p?'Pause music':'Play music'); }
   window.onSpotifyIframeApiReady=function(API){
-    API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:0JO9VhYHF6EI0KSw9xLI6A',width:'100%',height:80},function(c){ ctrl=c; if(wantPlay){ try{c.play()}catch(e){} } });
+    API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:5jyJz0RGTIP1obgZ4Ysqx9',width:300,height:80},function(c){
+      ctrl=c;
+      c.addListener('playback_update',function(e){ if(e&&e.data) show(!e.data.isPaused); });
+      if(want){ try{c.play()}catch(err){} }
+    });
   };
-  document.getElementById('openBtn').addEventListener('click',function(){ spot.hidden=false; wantPlay=true; if(ctrl){ try{ctrl.play()}catch(e){} } });
-  document.getElementById('spotHide').addEventListener('click',function(){ spot.hidden=true; mb.hidden=false; });
-  mb.addEventListener('click',function(){ spot.hidden=false; mb.hidden=true; });
+  document.getElementById('openBtn').addEventListener('click',function(){ want=true; if(ctrl){ try{ctrl.play()}catch(e){} } });
+  mb.addEventListener('click',function(){ if(!ctrl){ want=!want; return; } try{ ctrl.togglePlay(); }catch(e){} });
 })();
 </script>
 <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
