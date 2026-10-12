@@ -258,7 +258,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
         <div class="ornament" aria-hidden="true"><span></span></div>
         <div class="label">are getting married</div>
         <p class="date">Friday &middot; November 27, 2026</p>
-        <p class="place">Braganza Residence &middot; Dipalahan, Zamboanga Sibugay</p>
+        <p class="place">Braganza Residence &middot; Paradise, Diplahan, Zamboanga Sibugay</p>
         <div class="btn-row">
           <a class="btn" href="#rsvp">Confirm Attendance</a>
           <a class="btn ghost" href="#celebration">View Venue</a>
@@ -322,7 +322,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
       <div class="label">Reception</div>
       <p class="time">11:30 AM</p>
       <p class="venue">Braganza Residence</p>
-      <p class="addr">Paradise, Dipalahan, Zamboanga Sibugay</p>
+      <p class="addr">Paradise, Diplahan, Zamboanga Sibugay</p>
       <a class="mapcard" href="https://www.google.com/maps/place/7%C2%B046&#x27;15.6%22N+122%C2%B058&#x27;17.0%22E/@7.7711236,122.9714762,17.79z/data=!4m4!3m3!8m2!3d7.7709881!4d122.9713963!18m1!1e1?entry=ttu&amp;g_ep=EgoyMDI2MTAwNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" aria-label="Open Braganza Residence in Google Maps">
         <canvas id="mapArt" aria-hidden="true"></canvas>
         <svg class="pin" viewBox="0 0 24 32" aria-hidden="true"><path fill="currentColor" d="M12 0C5.4 0 0 5.3 0 11.9 0 20.8 12 32 12 32s12-11.2 12-20.1C24 5.3 18.6 0 12 0z"/><circle cx="12" cy="12" r="4.4" fill="#F7F0E9"/></svg>
@@ -334,7 +334,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5A7 7 0 005 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
           Get Directions
         </a>
-        <a class="btn ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Elgia+%26+Johnbert%27s+Wedding&amp;dates=20261127T033000Z/20261127T090000Z&amp;details=Reception+at+Braganza+Residence&amp;location=Braganza+Residence%2C+Dipalahan%2C+Zamboanga+Sibugay" target="_blank" rel="noopener">
+        <a class="btn ghost" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Elgia+%26+Johnbert%27s+Wedding&amp;dates=20261127T033000Z/20261127T090000Z&amp;details=Reception+at+Braganza+Residence&amp;location=Braganza+Residence%2C+Paradise%2C+Diplahan%2C+Zamboanga+Sibugay" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
           Add to Calendar
         </a>
@@ -393,9 +393,9 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
         <p class="lede" style="font-style:italic">We can't wait to celebrate this beautiful day with you.</p>
         <p class="sign">Elgia &amp; Johnbert</p>
         <div class="btn-row" style="margin-top:26px">
-          <a class="btn ghost" href="https://open.spotify.com/track/0JO9VhYHF6EI0KSw9xLI6A" target="_blank" rel="noopener">
+          <a class="btn ghost" href="https://open.spotify.com/track/44AyOl4qVkzS48vBsbNXaC" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
-            Our Song &middot; Tahanan by El Manu
+            Our Song &middot; Can&rsquo;t Help Falling in Love
           </a>
         </div>
       </div>
@@ -405,7 +405,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
 <footer>November 27 &middot; 2026 &middot; Zamboanga Sibugay</footer>
 
 <div class="spot-hidden" aria-hidden="true"><div id="spotEmbed"></div></div>
-<button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false" title="Palagi (instrumental)">
+<button class="music" id="musicBtn" type="button" aria-label="Play music" aria-pressed="false" title="Can't Help Falling in Love (piano)">
   <svg class="ic-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
   <span class="bars" aria-hidden="true"><i></i><i></i><i></i></span>
 </button>
@@ -425,7 +425,7 @@ footer{padding-block:28px;text-align:center;font-family:var(--label);font-size:.
   var ctrl=null, want=false, playing=false, mb=document.getElementById('musicBtn');
   function show(p){ playing=p; mb.classList.toggle('on',p); mb.setAttribute('aria-pressed',p?'true':'false'); mb.setAttribute('aria-label',p?'Pause music':'Play music'); }
   window.onSpotifyIframeApiReady=function(API){
-    API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:6Q5wfRhEi45sdinPr4rFoC',width:300,height:80},function(c){
+    API.createController(document.getElementById('spotEmbed'),{uri:'spotify:track:2nIyuLVYzmMS4XhlhEPfjo',width:300,height:80},function(c){
       ctrl=c;
       c.addListener('playback_update',function(e){ if(e&&e.data) show(!e.data.isPaused); });
       if(want){ try{c.play()}catch(err){} }
